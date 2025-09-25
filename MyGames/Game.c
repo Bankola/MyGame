@@ -49,6 +49,11 @@ int main() {
                     system("pause");
                     Flag = 0;
                     break;
+                default:
+                    printf("Incorrect input\n");
+                    system("pause");
+                    system("cls");
+                    continue;
                 }
                 if (Flag == 0) {
                     Flag = 1;
@@ -96,6 +101,11 @@ int main() {
                         case 0:
                             Flag = 0;
                             break;
+                        default:
+                            printf("Incorrect input\n");
+                            system("pause");
+                            system("cls");
+                            continue;
                         }
                         if (Flag == 0) {
                             Flag = 1;
