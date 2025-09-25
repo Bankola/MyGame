@@ -4,7 +4,8 @@
 #include <math.h>
 int main() {
     int user_choice = -1;
-    int Flag;
+    int Flag = 1;
+    int difficult = 2; //Normal
     while (user_choice != 1 && user_choice != 2 && user_choice != 0) {
         printf("**MAIN MENU**\n");
         printf("1.Play\n"
@@ -24,7 +25,34 @@ int main() {
                     "0.Exit\n");
                 scanf_s("%d", &user_choice);
                 switch (user_choice) {
-                    case 1
+                case 1:
+                    system("pause");
+                    system("cls");
+                    printf("***GUESS GAME***\n");
+                    printf("1.Computer mode\n"
+                        "2.User mode\n"
+                        "3.Back\n"
+                        "0.Exit\n");
+                    break;
+                    //Next - game
+                case 2:
+                    system("pause");
+                    system("cls");
+                    printf("***MAIN GAME***\n");
+                    break;
+                    //Next - game
+                case 3:
+                    system("cls");
+                    continue;
+                case 0:
+                    printf("Completion the program..\n");
+                    system("pause");
+                    Flag = 0;
+                    break;
+                }
+                if (Flag == 0) {
+                    Flag == 1;
+                    break;
                 }
             }
             break;
@@ -49,8 +77,7 @@ int main() {
                         "0.Exit\n");
                     break;
                 case 2:
-                    system("pause");
-                    Flag = 1;
+                    system("cls");
                     continue;
                 case 0:
                     printf("Completion the program..\n");
@@ -64,9 +91,10 @@ int main() {
                     continue;
                 }
                 if (Flag == 0) {
+                    Flag == 1;
                     break;
                 }
-            }   
+            }
             break;
         case 0:
             printf("Completion of the program..\n");
