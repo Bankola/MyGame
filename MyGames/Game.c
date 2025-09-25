@@ -51,12 +51,12 @@ int main() {
                     break;
                 }
                 if (Flag == 0) {
-                    Flag == 1;
+                    Flag = 1;
                     break;
                 }
             }
             break;
-        case 2:
+        case 2://Back don't work
             user_choice = -1;
             while (user_choice != 1 && user_choice != 2 && user_choice != 0) {
                 system("cls");
@@ -67,17 +67,43 @@ int main() {
                 scanf_s("%d", &user_choice);
                 switch (user_choice) {
                 case 1:
-                    system("pause");
-                    system("cls");
-                    printf("**DIFFICULT**\n");
-                    printf("1.Hard\n"
-                        "2.Normal\n"
-                        "3.Easy\n"
-                        "4.Back\n"
-                        "0.Exit\n");
+                    user_choice = -1;
+                    while (user_choice != 1 && user_choice != 2 && user_choice != 3 && user_choice != 4 && user_choice != 0) {
+                        system("pause");
+                        system("cls");
+                        printf("**DIFFICULT**\n");
+                        printf("1.Hard\n"
+                            "2.Normal\n"
+                            "3.Easy\n"
+                            "4.Back\n"
+                            "0.Exit\n");
+                        scanf_s("%d", &user_choice);
+                        switch (user_choice) {
+                        case 1:
+                            printf("Increased difficulty has been established\n");
+                            difficult = 1;//Hard
+                            break;
+                        case 2:
+                            printf("The normal difficulty is set\n");
+                            difficult = 2;//Normal
+                            break;
+                        case 3:
+                            printf("A simple difficulty level has been set\n");
+                            difficult = 3;//Easy
+                            break;
+                        case 4:
+                            continue;
+                        case 0:
+                            Flag = 0;
+                            break;
+                        }
+                        if (Flag == 0) {
+                            Flag = 1;
+                            break;
+                        }
+                    }
                     break;
                 case 2:
-                    system("cls");
                     continue;
                 case 0:
                     printf("Completion the program..\n");
@@ -91,7 +117,7 @@ int main() {
                     continue;
                 }
                 if (Flag == 0) {
-                    Flag == 1;
+                    Flag = 1;
                     break;
                 }
             }
