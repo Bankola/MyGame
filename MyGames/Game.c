@@ -155,20 +155,40 @@ int main() {
                             "3.Easy\n"
                             "4.Back\n"
                             "0.Exit\n");
+                        if (difficult == 1) {
+                            printf("Now - Hard\n");
+                        }
+                        else if (difficult == 2) {
+                            printf("Now - Normal\n");
+                        }
+                        else {
+                            printf("Now - Easy\n");
+                        }
                         scanf_s("%d", &user_choice);
                         switch (user_choice) {
                         case 1:
-                            printf("Increased difficulty has been established\n");
                             difficult = 1;//Hard
-                            break;
+                            printf("New difficulty - Hard\n");
+                            system("pause");
+                            system("cls");
+                            user_choice = -1;
+                            continue;
                         case 2:
                             printf("The normal difficulty is set\n");
                             difficult = 2;//Normal
-                            break;
+                            printf("New difficulty - Normal\n");
+                            system("pause");
+                            system("cls");
+                            user_choice = -1;
+                            continue;
                         case 3:
                             printf("A simple difficulty level has been set\n");
                             difficult = 3;//Easy
-                            break;
+                            printf("New difficulty - Easy\n");
+                            system("pause");
+                            system("cls");
+                            user_choice = -1;
+                            continue;
                         case 4:
                             continue; 
                         case 0:
@@ -179,6 +199,9 @@ int main() {
                             system("pause");
                             system("cls");
                             continue;
+                        }
+                        if (user_choice == -1) {
+                            break;
                         }
                         if (Flag == 0) {
                             Flag = 1;
@@ -201,14 +224,17 @@ int main() {
                         case 1:
                             system("color 17");
                             system("cls");
-                            continue;//dont work
+                            user_choice = -1;
+                            continue;
                         case 2:
                             system("color 20");
                             system("cls");
-                            continue;//dont work
+                            user_choice = -1;
+                            continue;
                         case 3:
                             system("color 5");
                             system("cls");
+                            user_choice = -1;
                             continue;
                         case 4:
                             continue;
@@ -222,6 +248,9 @@ int main() {
                             system("pause");
                             system("cls");
                             continue;
+                        }
+                        if (user_choice == -1){
+                            break;
                         }
                         if (Flag == 0) {
                             Flag = 1;
