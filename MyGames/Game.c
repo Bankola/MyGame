@@ -89,7 +89,7 @@ int main() {
                                 case 2:
                                     system("cls");
                                     printf("The new world\n");
-                                    //continue later
+                                    printf("You can go out..\n");
                                     break;
                                 case 3:
                                     system("cls");
@@ -97,7 +97,7 @@ int main() {
                                     break;
                                 case 4:
                                     system("cls");
-                                    printf("Secret final\n");
+                                    printf("Secret final, your family right here.\n");
                                     break;
                                 default:
                                     printf("Incorrect input\n");
@@ -134,11 +134,12 @@ int main() {
             break;
         case 2://Back don't work
             user_choice = -1;
-            while (user_choice != 1 && user_choice != 2 && user_choice != 0) {
+            while (user_choice != 1 && user_choice != 2 && user_choice != 3 && user_choice != 0) {
                 system("cls");
                 printf("**SETTINGS**\n");
                 printf("1.Difficult\n"
-                    "2.Back\n"
+                    "2.Color\n"
+                    "3.Back\n"
                     "0.Exit\n");
                 scanf_s("%d", &user_choice);
                 switch (user_choice) {
@@ -168,7 +169,7 @@ int main() {
                             difficult = 3;//Easy
                             break;
                         case 4:
-                            continue;
+                            continue; 
                         case 0:
                             Flag = 0;
                             break;
@@ -185,6 +186,10 @@ int main() {
                     }
                     break;
                 case 2:
+                    printf("Colors\n");
+                    break;
+                case 3:
+                    system("cls");
                     continue;
                 case 0:
                     printf("Completion the program..\n");
