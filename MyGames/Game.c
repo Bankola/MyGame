@@ -100,16 +100,27 @@ int main() {
 
                                 } while (response != 'y' && response != 'Y' && attempts != 6);
                                 if (attempts < 4) {
+                                    total = total + 1;
+                                    defeats = defeats + 1;
                                     printf("Your score +25!\n");
                                     score = score + 25;
                                 }
                                 else if (attempts == 5) {
+                                    total = total + 1;
+                                    defeats = defeats + 1;
                                     printf("Your score +50!\n");
                                     score = score + 50;
                                 }
-                                else {
+                                else if (attempts==6){
+                                    total = total + 1;
+                                    defeats = defeats + 1;
                                     printf("Your score +75!\n");
                                     score = score + 75;
+                                }
+                                else {
+                                    total = total + 1;
+                                    wins = wins + 1;
+                                    printf("Computer didn't guess the number in %d attempts!\n", attempts);
                                 }
 
                                 int back_choice = -1;
@@ -129,6 +140,14 @@ int main() {
                                     else if (back_choice == 2) {
                                         printf("Completion the program..\n");
                                         system("pause");
+                                        system("cls");
+                                        printf("***THE END***\n\n");
+                                        printf("YOUR SCORE: %d\n", score);
+                                        printf("TOTAL GAMES: %d\n", total);
+                                        printf("WINS: %d\n", wins);
+                                        printf("DEFEATS: %d\n", defeats);
+                                        system("pause");
+                                        system("cls");
                                         return 0;
                                     }
                                     else {
@@ -138,10 +157,13 @@ int main() {
                                 }
                             }
                             else if (difficult == 2) {
+                                srand(time(NULL));
                                 while (getchar() != '\n');
+                                int max_attempts = 10; // 10 попыток для Normal
 
                                 do {
-                                    guess = (low + high) / 2;
+                                    // Генерируем случайное число из текущего интервала [low, high]
+                                    guess = low + rand() % (high - low + 1);
                                     attempts++;
 
                                     printf("Attempts %d: Computer: This number is %d?\n", attempts, guess);
@@ -151,38 +173,52 @@ int main() {
                                     switch (response) {
                                     case 'b':  // Больше
                                     case 'B':
-                                        low = guess + 1;
+                                        low = guess + 1; // Сужаем интервал снизу
                                         break;
                                     case 'm':  // Меньше
                                     case 'M':
-                                        high = guess - 1;
+                                        high = guess - 1; // Сужаем интервал сверху
                                         break;
                                     case 'y':  // Угадал
                                     case 'Y':
-                                        printf("\n The computer guessed your number %d in %d attempts!\n", guess, attempts);
+                                        printf("\nThe computer guessed your number %d in %d attempts!\n", guess, attempts);
                                         break;
                                     default:
                                         printf("Incorrect input! Use b/m/y\n");
                                         attempts--;  // Не считаем эту попытку
                                         continue;
                                     }
+
                                     if (low > high) {
-                                        printf("\n You a lier!\n");
+                                        printf("\nYou're cheating!\n");
                                         break;
                                     }
 
-                                } while (response != 'y' && response != 'Y' && attempts != 6);
-                                if (attempts < 4) {
-                                    printf("Your score +25!\n");
-                                    score = score + 25;
-                                }
-                                else if (attempts == 5) {
-                                    printf("Your score +50!\n");
-                                    score = score + 50;
+                                } while (response != 'y' && response != 'Y' && attempts != max_attempts);
+                                if (response == 'y' || response == 'Y') {
+                                    if (attempts <= 4) {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +75!\n");
+                                        score = score + 75;
+                                    }
+                                    else if (attempts <= 7) {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +50!\n");
+                                        score = score + 50;
+                                    }
+                                    else {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +25!\n");
+                                        score = score + 25;
+                                    }
                                 }
                                 else {
-                                    printf("Your score +75!\n");
-                                    score = score + 75;
+                                    total = total + 1;
+                                    wins = wins + 1;
+                                    printf("Computer didn't guess the number in %d attempts!\n", max_attempts);
                                 }
 
                                 int back_choice = -1;
@@ -202,6 +238,111 @@ int main() {
                                     else if (back_choice == 2) {
                                         printf("Completion the program..\n");
                                         system("pause");
+                                        system("cls");
+                                        printf("***THE END***\n\n");
+                                        printf("YOUR SCORE: %d\n", score);
+                                        printf("TOTAL GAMES: %d\n", total);
+                                        printf("WINS: %d\n", wins);
+                                        printf("DEFEATS: %d\n", defeats);
+                                        system("pause");
+                                        system("cls");
+                                        return 0;
+                                    }
+                                    else {
+                                        printf("Incorrect input! Choose 1 or 2.\n");
+                                        back_choice = -1;
+                                    }
+                                }
+                            }
+                            else if (difficult == 3) {
+                                srand(time(NULL));
+                                while (getchar() != '\n');
+                                int max_attempts = 10; // 10 попыток для Easy
+
+                                do {
+                                    // Генерируем случайное число от 1 до 100 (без сужения интервала)
+                                    guess = 1 + rand() % 100;
+                                    attempts++;
+
+                                    printf("Attempts %d: Computer: This number is %d?\n", attempts, guess);
+                                    printf("You answer (b/m/y): ");
+                                    scanf_s(" %c", &response);
+
+                                    switch (response) {
+                                    case 'b':  // Больше
+                                    case 'B':
+                                        break;
+                                    case 'm':  // Меньше
+                                    case 'M':
+                                        break;
+                                    case 'y':  // Угадал
+                                    case 'Y':
+                                        printf("\nThe computer guessed your number %d in %d attempts!\n", guess, attempts);
+                                        break;
+                                    default:
+                                        printf("Incorrect input! Use b/m/y\n");
+                                        attempts--;  // Не считаем эту попытку
+                                        continue;
+                                    }
+
+                                } while (response != 'y' && response != 'Y' && attempts != max_attempts);
+                                if (response == 'y' || response == 'Y') {
+                                    if (attempts <= 3) {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +100!\n");
+                                        score = score + 100;
+                                    }
+                                    else if (attempts <= 6) {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +75!\n");
+                                        score = score + 75;
+                                    }
+                                    else if (attempts <= 8) {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +50!\n");
+                                        score = score + 50;
+                                    }
+                                    else {
+                                        total = total + 1;
+                                        defeats = defeats + 1;
+                                        printf("Your score +25!\n");
+                                        score = score + 25;
+                                    }
+                                }
+                                else {
+                                    total = total + 1;
+                                    wins = wins + 1;
+                                    printf("Computer didn't guess the number in %d attempts!\n", max_attempts);
+                                }
+
+                                int back_choice = -1;
+                                while (back_choice != 1) {
+                                    system("pause");
+                                    system("cls");
+                                    printf("**GUESS GAME**\n");
+                                    printf("1. Back to menu\n");
+                                    printf("2. Exit\n");
+                                    scanf_s("%d", &back_choice);
+
+                                    if (back_choice == 1) {
+                                        // Возвращаемся в меню выбора режима Guess Game
+                                        user_choice = -1;
+                                        break;
+                                    }
+                                    else if (back_choice == 2) {
+                                        printf("Completion the program..\n");
+                                        system("pause");
+                                        system("cls");
+                                        printf("***THE END***\n\n");
+                                        printf("YOUR SCORE: %d\n", score);
+                                        printf("TOTAL GAMES: %d\n", total);
+                                        printf("WINS: %d\n", wins);
+                                        printf("DEFEATS: %d\n", defeats);
+                                        system("pause");
+                                        system("cls");
                                         return 0;
                                     }
                                     else {
