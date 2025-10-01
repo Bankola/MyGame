@@ -1,9 +1,13 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
 #include <windows.h>
 int main() {
+    int defeats = 0;
+    int wins = 0;
+    int total = 0;
+    int score = 0;
     int user_choice = -1;
     int Flag = 1;
     int difficult = 2; //Normal
@@ -28,15 +32,221 @@ int main() {
                 scanf_s("%d", &user_choice);
                 switch (user_choice) {
                 case 1:
-                    system("pause");
-                    system("cls");
-                    printf("***GUESS GAME***\n");
-                    printf("1.Computer mode\n"
-                        "2.User mode\n"
-                        "3.Back\n"
-                        "0.Exit\n");
+                    user_choice = -1;
+                    while (user_choice != 1 && user_choice != 2 && user_choice != 3 && user_choice != 0) {
+                        system("pause");
+                        system("cls");
+                        printf("**GUESS GAME**\n");
+                        printf("Choose game mode:\n"
+                            "1.Computer mode\n"
+                            "2.User mode\n"
+                            "3.Back\n"
+                            "0.Exit\n");
+                        if (difficult == 1) {
+                            printf("Difficult - HARD\n");
+                        }
+                        else if (difficult == 2) {
+                            printf("Difficult - NORMAL\n");
+                        }
+                        else {
+                            printf("Difficult - EASY\n");
+                        }
+                        scanf_s("%d", &user_choice);
+                        switch (user_choice) {
+                        case 1:
+                            int low = 1;
+                            int high = 100;
+                            int guess;
+                            int attempts = 0;
+                            char response;
+                            system("cls");
+                            printf("***COMPUTER MODE***\n");
+                            printf("Pick a number between 1 and 100.\n");
+                            printf("Answer: 'b' - more, 'm' - less, 'y' - guessed correctly\n\n");
+                            // Очистка буфера ввода
+                            if (difficult == 1) {
+                                while (getchar() != '\n');
+
+                                do {
+                                    guess = (low + high) / 2;
+                                    attempts++;
+
+                                    printf("Attempts %d: Computer: This number is %d?\n", attempts, guess);
+                                    printf("You answer (b/m/y): ");
+                                    scanf_s(" %c", &response);
+
+                                    switch (response) {
+                                    case 'b':  // Больше
+                                    case 'B':
+                                        low = guess + 1;
+                                        break;
+                                    case 'm':  // Меньше
+                                    case 'M':
+                                        high = guess - 1;
+                                        break;
+                                    case 'y':  // Угадал
+                                    case 'Y':
+                                        printf("\n The computer guessed your number %d in %d attempts!\n", guess, attempts);
+                                        break;
+                                    default:
+                                        printf("Incorrect input! Use b/m/y\n");
+                                        attempts--;  // Не считаем эту попытку
+                                        continue;
+                                    }
+                                    if (low > high) {
+                                        printf("\n You a lier!\n");
+                                        break;
+                                    }
+
+                                } while (response != 'y' && response != 'Y' && attempts != 6);
+                                if (attempts < 4) {
+                                    printf("Your score +25!\n");
+                                    score = score + 25;
+                                }
+                                else if (attempts == 5) {
+                                    printf("Your score +50!\n");
+                                    score = score + 50;
+                                }
+                                else {
+                                    printf("Your score +75!\n");
+                                    score = score + 75;
+                                }
+
+                                int back_choice = -1;
+                                while (back_choice != 1) {
+                                    system("pause");
+                                    system("cls");
+                                    printf("**GUESS GAME**\n");
+                                    printf("1. Back to menu\n");
+                                    printf("2. Exit\n");
+                                    scanf_s("%d", &back_choice);
+
+                                    if (back_choice == 1) {
+                                        // Возвращаемся в меню выбора режима Guess Game
+                                        user_choice = -1;
+                                        break;
+                                    }
+                                    else if (back_choice == 2) {
+                                        printf("Completion the program..\n");
+                                        system("pause");
+                                        return 0;
+                                    }
+                                    else {
+                                        printf("Incorrect input! Choose 1 or 2.\n");
+                                        back_choice = -1;
+                                    }
+                                }
+                            }
+                            else if (difficult == 2) {
+                                while (getchar() != '\n');
+
+                                do {
+                                    guess = (low + high) / 2;
+                                    attempts++;
+
+                                    printf("Attempts %d: Computer: This number is %d?\n", attempts, guess);
+                                    printf("You answer (b/m/y): ");
+                                    scanf_s(" %c", &response);
+
+                                    switch (response) {
+                                    case 'b':  // Больше
+                                    case 'B':
+                                        low = guess + 1;
+                                        break;
+                                    case 'm':  // Меньше
+                                    case 'M':
+                                        high = guess - 1;
+                                        break;
+                                    case 'y':  // Угадал
+                                    case 'Y':
+                                        printf("\n The computer guessed your number %d in %d attempts!\n", guess, attempts);
+                                        break;
+                                    default:
+                                        printf("Incorrect input! Use b/m/y\n");
+                                        attempts--;  // Не считаем эту попытку
+                                        continue;
+                                    }
+                                    if (low > high) {
+                                        printf("\n You a lier!\n");
+                                        break;
+                                    }
+
+                                } while (response != 'y' && response != 'Y' && attempts != 6);
+                                if (attempts < 4) {
+                                    printf("Your score +25!\n");
+                                    score = score + 25;
+                                }
+                                else if (attempts == 5) {
+                                    printf("Your score +50!\n");
+                                    score = score + 50;
+                                }
+                                else {
+                                    printf("Your score +75!\n");
+                                    score = score + 75;
+                                }
+
+                                int back_choice = -1;
+                                while (back_choice != 1) {
+                                    system("pause");
+                                    system("cls");
+                                    printf("**GUESS GAME**\n");
+                                    printf("1. Back to menu\n");
+                                    printf("2. Exit\n");
+                                    scanf_s("%d", &back_choice);
+
+                                    if (back_choice == 1) {
+                                        // Возвращаемся в меню выбора режима Guess Game
+                                        user_choice = -1;
+                                        break;
+                                    }
+                                    else if (back_choice == 2) {
+                                        printf("Completion the program..\n");
+                                        system("pause");
+                                        return 0;
+                                    }
+                                    else {
+                                        printf("Incorrect input! Choose 1 or 2.\n");
+                                        back_choice = -1;
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            printf("User mode\n");
+                            system("pause");
+                            //next - game
+                            user_choice = -1;
+                            break;
+                        case 3:
+                            user_choice = -1;
+                            break;
+                        case 0:
+                            printf("Completion the program..\n");
+                            system("pause");
+                            Flag = 0;
+                            break;
+                        default:
+                            printf("Incorrect input\n");
+                            system("pause");
+                            system("cls");
+                            continue;
+                        }
+                        if (user_choice == -1) {
+                            break;
+                        }
+                        if (Flag == 0) {
+                            system("cls");
+                            printf("***THE END***\n\n");
+                            printf("YOUR SCORE: %d\n", score);
+                            printf("TOTAL GAMES: %d\n", total);
+                            printf("WINS: %d\n", wins);
+                            printf("DEFEATS: %d\n", defeats);
+                            system("pause");
+                            system("cls");
+                            break;
+                        }
+                    }
                     break;
-                    //Next - game
                 case 2:
                     system("pause");
                     system("cls");
@@ -128,6 +338,15 @@ int main() {
                     continue;
                 }
                 if (Flag == 0) {
+                    system("cls");
+                    printf("***THE END***\n\n");
+                    printf("YOUR SCORE: %d\n", score);
+                    printf("TOTAL GAMES: %d\n", total);
+                    printf("WINS: %d\n", wins);
+                    printf("DEFEATS: %d\n", defeats);
+                    system("pause");
+                    system("cls");
+                    break;
                     Flag = 1;
                     break;
                 }
@@ -204,6 +423,15 @@ int main() {
                             break;
                         }
                         if (Flag == 0) {
+                            system("cls");
+                            printf("***THE END***\n\n");
+                            printf("YOUR SCORE: %d\n", score);
+                            printf("TOTAL GAMES: %d\n", total);
+                            printf("WINS: %d\n", wins);
+                            printf("DEFEATS: %d\n", defeats);
+                            system("pause");
+                            system("cls");
+                            break;
                             Flag = 1;
                             break;
                         }
@@ -253,6 +481,15 @@ int main() {
                             break;
                         }
                         if (Flag == 0) {
+                            system("cls");
+                            printf("***THE END***\n\n");
+                            printf("YOUR SCORE: %d\n", score);
+                            printf("TOTAL GAMES: %d\n", total);
+                            printf("WINS: %d\n", wins);
+                            printf("DEFEATS: %d\n", defeats);
+                            system("pause");
+                            system("cls");
+                            break;
                             Flag = 1;
                             break;
                         }
@@ -273,6 +510,15 @@ int main() {
                     continue;
                 }
                 if (Flag == 0) {
+                    system("cls");
+                    printf("***THE END***\n\n");
+                    printf("YOUR SCORE: %d\n", score);
+                    printf("TOTAL GAMES: %d\n", total);
+                    printf("WINS: %d\n", wins);
+                    printf("DEFEATS: %d\n", defeats);
+                    system("pause");
+                    system("cls");
+                    break;
                     Flag = 1;
                     break;
                 }
@@ -281,6 +527,15 @@ int main() {
         case 0:
             printf("Completion of the program..\n");
             system("pause");
+            system("cls");
+            printf("***THE END***\n\n");
+            printf("YOUR SCORE: %d\n", score);
+            printf("TOTAL GAMES: %d\n", total);
+            printf("WINS: %d\n", wins);
+            printf("DEFEATS: %d\n", defeats);
+            system("pause");
+            system("cls");
+            break;
             break;
         default:
             printf("Incorrect input\n");
